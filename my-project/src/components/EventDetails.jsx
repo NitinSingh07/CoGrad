@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
+import Cookies from "js-cookie"; // Import js-cookie
 
 const EventDetail = () => {
   const [event, setEvent] = useState(null);
@@ -11,27 +11,52 @@ const EventDetail = () => {
   useEffect(() => {
     const fetchEvent = async () => {
       try {
-        const res = await axios.get(`http://localhost:8000/api/getevent/${id}`);
-        setEvent(res.data);
+        const response = await fetch(
+          `http://localhost:8000/api/getevent/${id}`
+        );
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const data = await response.json();
+        setEvent(data);
       } catch (error) {
         console.error("Error fetching event:", error);
+        toast.error("Error fetching event");
       }
     };
 
     fetchEvent();
   }, [id]);
 
-  const registerForEvent = async () => {
+  const registerForEvent = async (e) => {
+    e.preventDefault();
+    const token = localStorage.getItem("token"); // Retrieve token from cookies
+    console.log(token);
+    if (!token) {
+      toast.error("User not authenticated. Please log in.");
+      return;
+    }
+
     try {
-      await axios.post(
-        `http://localhost:8000/api/event/${id}/register`,
-        {},
+      // console.log(id);
+      const response = await fetch(
+        `http://localhost:8000/api/event/register/${id}`,
         {
-          headers: { "x-auth-token": localStorage.getItem("token") },
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`, // Send token in Authorization header
+          },
         }
       );
-      toast.success("Registered for the event successfully!");
-      navigate("/"); // Navigate to home page
+      // console.log("hi", response);
+      if (response.ok) {
+        toast.success("Registered for the event successfully!");
+        navigate("/");
+      } else {
+        const errorData = await response.json();
+        toast.error(errorData.error || "Error registering for event hi");
+      }
     } catch (error) {
       console.error("Error registering for event:", error);
       toast.error("Error registering for event");
@@ -60,7 +85,7 @@ const EventDetail = () => {
       >
         Register Now
       </button>
-      <Toaster /> {/* To display toasts */}
+      <Toaster />
     </div>
   );
 };
