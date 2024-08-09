@@ -6,16 +6,33 @@ import mongoose from "mongoose";
 import cors from "cors";
 import authRouter from "./routes/auth.routes.js";
 import eventRouter from "./routes/event.routes.js";
+import userProfileRouter from "./routes/user.routes.js";
 import bodyParser from "body-parser";
+import connectdb from "./db/index.js";
+
+const PORT = 8000;
+connectdb()
+  .then(() => {
+    console.log("Connected to MongoDB")
+    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+  })
+  .catch((err) => console.error("Error connecting to MongoDB:", err));
 
 dotenv.config();
-const PORT = 8000;
+
 const app = express();
 
-mongoose
-  .connect(process.env.MONGO)
-  .then(() => console.log("Connected to MongoDB"))
-  .catch((err) => console.error("Error connecting to MongoDB:", err));
+// mongoose
+//   .connect(
+//     "mongodb+srv://nitin-event-app:nitinevent123@cluster0.d3h0d.mongodb.net/",
+//     {
+//       useNewUrlParser: true,
+//       useUnifiedTopology: true,
+//       ssl: false, 
+//     }
+//   )
+//   .then(() => console.log("Connected to MongoDB"))
+//   .catch((err) => console.error("Error connecting to MongoDB:", err));
 
 app.use(express.json());
 app.use(cookieParser());
@@ -30,6 +47,7 @@ app.use(
 
 app.use("/api", authRouter);
 app.use("/api", eventRouter);
+app.use("/api", userProfileRouter);
 
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
@@ -41,4 +59,4 @@ app.use((err, req, res, next) => {
   });
 });
 
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+// app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
