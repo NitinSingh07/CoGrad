@@ -6,12 +6,14 @@ import EventDetail from "./components/EventDetails.jsx";
 import RegisteredEvents from "./pages/RegisteredEvents.jsx";
 import CreateEvent from "./pages/CreateEvent.jsx";
 import AllEvents from "./pages/AllEvents.jsx";
+import UserProfile from "./pages/UserProfile.jsx";
 
 function App() {
   return (
     <>
       <Routes>
         <Route path="/" element={<AllEvents />} />
+        <Route path="/user-profile" element={<UserProfile />} />
         <Route exact path="/signup" element={<SignUp />} />
         <Route exact path="/login" element={<Login />} />
         <Route path="/events/:id" element={<EventDetail />} />

@@ -4,12 +4,27 @@ import { Link } from "react-router-dom";
 import { FaCalendarAlt, FaClock, FaMapMarkerAlt } from "react-icons/fa";
 
 const EventCard = ({ event }) => {
+  // Array of images for the event
+  const images = [
+    "/event.jpg",
+    "/event2.jpg",
+    "event3.jpg",
+    "event4.jpg",
+    "event5.jpg",
+  ];
+
+  // Function to select a random image
+  const getRandomImage = () => {
+    const randomIndex = Math.floor(Math.random() * images.length);
+    return images[randomIndex];
+  };
+
   return (
     <div className="bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden transition-transform transform hover:scale-105 hover:shadow-xl hover:border-indigo-400">
       <Link to={`/events/${event._id}`} className="block">
         <div className="relative w-full h-48">
           <img
-            src="/event.jpg" // Path to the event image
+            src={getRandomImage()} // Use the random image
             alt="Event"
             className="w-full h-full object-cover rounded-t-lg"
           />
