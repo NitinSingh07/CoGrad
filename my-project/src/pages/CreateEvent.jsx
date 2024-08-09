@@ -20,14 +20,17 @@ const CreateEvent = () => {
     }
 
     try {
-      const response = await fetch("/api/create-event", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({ title, description, date, time, location }),
-      });
+      const response = await fetch(
+        "https://event-management-1tco.onrender.com/api/create-event",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ title, description, date, time, location }),
+        }
+      );
 
       if (response.ok) {
         toast.success("Event created successfully!");

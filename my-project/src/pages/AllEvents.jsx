@@ -8,7 +8,9 @@ const AllEvents = () => {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const response = await fetch("/api/getAll");
+        const response = await fetch(
+          "https://event-management-1tco.onrender.com/api/getAll"
+        );
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }

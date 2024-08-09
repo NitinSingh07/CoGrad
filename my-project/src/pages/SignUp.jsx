@@ -13,13 +13,21 @@ const SignUp = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("/api/auth/signUp", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ userName: username, fullName, email, password }),
-      });
+      const response = await fetch(
+        "https://event-management-1tco.onrender.com/api/auth/signUp",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            userName: username,
+            fullName,
+            email,
+            password,
+          }),
+        }
+      );
 
       const data = await response.json();
 

@@ -13,14 +13,17 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("/api/auth/signIn", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-        body: JSON.stringify({ email: emailUsername, password }),
-      });
+      const response = await fetch(
+        "https://event-management-1tco.onrender.com/api/auth/signIn",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+          body: JSON.stringify({ email: emailUsername, password }),
+        }
+      );
 
       const data = await response.json();
       localStorage.setItem("token", data.token);

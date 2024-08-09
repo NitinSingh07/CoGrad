@@ -16,7 +16,7 @@ const RegisteredEvents = () => {
 
       try {
         const response = await fetch(
-          "/api/registered-events",
+          "https://event-management-1tco.onrender.com/api/registered-events",
           {
             method: "GET",
             headers: {

@@ -19,7 +19,7 @@ const EventDetail = () => {
     const fetchEvent = async () => {
       try {
         const response = await fetch(
-          `/api/getevent/${id}`
+          `https://event-management-1tco.onrender.com/api/getevent/${id}`
         );
         if (!response.ok) {
           throw new Error("Network response was not ok");
@@ -45,7 +45,7 @@ const EventDetail = () => {
 
     try {
       const response = await fetch(
-        `/api/event/register/${id}`,
+        `https://event-management-1tco.onrender.com/api/event/register/${id}`,
         {
           method: "POST",
           headers: {
