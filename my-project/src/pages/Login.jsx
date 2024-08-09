@@ -19,7 +19,7 @@ const Login = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        credentials: "include", // This ensures cookies are sent and received
+        credentials: "include",
         body: JSON.stringify({ email: emailUsername, password }),
       });
 
