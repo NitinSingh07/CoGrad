@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setUser } from "../redux/user/userSlice.js";
 
 const Login = () => {
   const [emailUsername, setEmailUsername] = useState("");
   const [password, setPassword] = useState("");
-
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
@@ -24,6 +26,7 @@ const Login = () => {
       localStorage.setItem("token", data.token);
       if (response.ok) {
         toast.success("User logged in successfully");
+        dispatch(setUser(data.user));
         navigate("/");
       } else {
         throw new Error(data.message || "Login failed");

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import EventCard from "../components/EventCard"; // Adjust import based on your file structure
-import Cookies from "js-cookie"; // Import js-cookie
+import EventCard from "../components/EventCard";
+import Cookies from "js-cookie";
 
 const RegisteredEvents = () => {
   const [registeredEvents, setRegisteredEvents] = useState([]);
@@ -18,21 +18,21 @@ const RegisteredEvents = () => {
         const response = await fetch(
           "http://localhost:8000/api/registered-events",
           {
+            method: "GET",
             headers: {
               Authorization: `Bearer ${token}`,
             },
           }
         );
-
+        console.log(response);
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
 
         const data = await response.json();
-        console.log("Fetched events:", data); // Debugging line
+        console.log("Fetched events:", data);
         setRegisteredEvents(data);
       } catch (err) {
-        console.error("Error fetching registered events:", err);
         setError("Error fetching registered events");
       }
     };
