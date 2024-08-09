@@ -42,7 +42,7 @@ const signIn = async (req, res, next) => {
 
     const options = {
       httpOnly: true,
-      secure: false, // Adjust based on environment
+      secure: true, // Adjust based on environment
       sameSite: "lax",
       path: "/", // Adjust as needed, can also be 'strict' or 'none'
     };
