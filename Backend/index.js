@@ -13,18 +13,14 @@ const PORT = 8000;
 const app = express();
 
 mongoose
-  .connect(process.env.MONGO, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    ssl: true,
-  })
+  .connect(process.env.MONGO)
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.error("Error connecting to MongoDB:", err));
 
 app.use(express.json());
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
-// server.js
+
 app.use(
   cors({
     origin: "http://localhost:5173",
