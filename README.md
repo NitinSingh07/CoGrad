@@ -27,7 +27,7 @@ This project is a React-based application that allows users to view the event in
 
 1. **Clone the Repository**
     ```bash
-    git clone https://github.com/NitinSingh07/CoGrad.git
+    git clone https://github.com/NitinSingh07/Event-Management.git
     ```
 
 2. **Navigate to the Project Directory**
