@@ -38,15 +38,18 @@ const signIn = async (req, res, next) => {
     const token = jwt.sign({ id: user._id }, process.env.JWT_TOKEN, {
       expiresIn: "30d",
     });
+    console.log("Token:", token);
 
-    res
-      .cookie("access_token", token, {
-        httpOnly: true,
-        secure: false,
-        sameSite: "lax", // Adjust based on your needs
-      })
+    const options = {
+      httpOnly: true,
+      secure: false, // Adjust based on environment
+      sameSite: "lax",
+      path: "/", // Adjust as needed, can also be 'strict' or 'none'
+    };
+    return res
       .status(200)
-      .json(rest);
+      .cookie("access_token", token, options) // Set the cookie
+      .json({ message: "User logged in successfully", user: rest, token });
   } catch (error) {
     console.error(error);
     next(error);
