@@ -43,84 +43,99 @@ const CreateEvent = () => {
   };
 
   return (
-    <div className="p-6 max-w-lg mx-auto bg-white border border-gray-300 rounded-lg shadow-lg">
-      <h1 className="text-2xl font-extrabold text-gray-800 mb-4">
-        Create New Event
-      </h1>
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <div>
-          <label htmlFor="title" className="block text-gray-700 mb-1">
-            Title
-          </label>
-          <input
-            type="text"
-            id="title"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            className="w-full p-2 border border-gray-300 rounded"
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="description" className="block text-gray-700 mb-1">
-            Description
-          </label>
-          <textarea
-            id="description"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            className="w-full p-2 border border-gray-300 rounded"
-            rows="4"
-            required
-          ></textarea>
-        </div>
-        <div>
-          <label htmlFor="date" className="block text-gray-700 mb-1">
-            Date
-          </label>
-          <input
-            type="date"
-            id="date"
-            value={date}
-            onChange={(e) => setDate(e.target.value)}
-            className="w-full p-2 border border-gray-300 rounded"
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="time" className="block text-gray-700 mb-1">
-            Time
-          </label>
-          <input
-            type="time"
-            id="time"
-            value={time}
-            onChange={(e) => setTime(e.target.value)}
-            className="w-full p-2 border border-gray-300 rounded"
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="location" className="block text-gray-700 mb-1">
-            Location
-          </label>
-          <input
-            type="text"
-            id="location"
-            value={location}
-            onChange={(e) => setLocation(e.target.value)}
-            className="w-full p-2 border border-gray-300 rounded"
-            required
-          />
-        </div>
-        <button
-          type="submit"
-          className="bg-indigo-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-indigo-600 transition-colors"
-        >
-          Create Event
-        </button>
-      </form>
-      <Toaster />
+    <div className="flex flex-col md:flex-row items-start md:items-center p-6 max-w-6xl mx-auto mt-6 mb-6 bg-gray-100 border border-gray-300 rounded-lg">
+      <div className="flex-1 p-6">
+        <h1 className="text-3xl font-bold text-indigo-700 mb-6">
+          Create New Event
+        </h1>
+        <form onSubmit={handleSubmit} className="space-y-5">
+          <div>
+            <label htmlFor="title" className="block text-gray-800 text-lg mb-2">
+              Title
+            </label>
+            <input
+              type="text"
+              id="title"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              className="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              required
+            />
+          </div>
+          <div>
+            <label
+              htmlFor="description"
+              className="block text-gray-800 text-lg mb-2"
+            >
+              Description
+            </label>
+            <textarea
+              id="description"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              className="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              rows="5"
+              required
+            ></textarea>
+          </div>
+          <div>
+            <label htmlFor="date" className="block text-gray-800 text-lg mb-2">
+              Date
+            </label>
+            <input
+              type="date"
+              id="date"
+              value={date}
+              onChange={(e) => setDate(e.target.value)}
+              className="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              required
+            />
+          </div>
+          <div>
+            <label htmlFor="time" className="block text-gray-800 text-lg mb-2">
+              Time
+            </label>
+            <input
+              type="time"
+              id="time"
+              value={time}
+              onChange={(e) => setTime(e.target.value)}
+              className="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              required
+            />
+          </div>
+          <div>
+            <label
+              htmlFor="location"
+              className="block text-gray-800 text-lg mb-2"
+            >
+              Location
+            </label>
+            <input
+              type="text"
+              id="location"
+              value={location}
+              onChange={(e) => setLocation(e.target.value)}
+              className="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              required
+            />
+          </div>
+          <button
+            type="submit"
+            className="bg-indigo-600 text-white font-semibold py-3 px-6 rounded-lg shadow-sm hover:bg-indigo-700 transition-colors"
+          >
+            Create Event
+          </button>
+        </form>
+        <Toaster />
+      </div>
+      <div className="hidden md:block md:w-1/2 md:ml-8">
+        <img
+          src="/create.jpg"
+          alt="Create Event"
+          className="w-full h-auto rounded-lg shadow-sm"
+        />
+      </div>
     </div>
   );
 };
