@@ -22,14 +22,13 @@ dotenv.config();
 
 const app = express();
 
-
 app.use(express.json());
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: "https://event-management-two-iota.vercel.app",
     credentials: true,
   })
 );
@@ -37,7 +36,6 @@ app.use(
 app.use("/api", authRouter);
 app.use("/api", eventRouter);
 app.use("/api", userProfileRouter);
-
 
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
