@@ -29,13 +29,13 @@ const AllEvents = () => {
 
   return (
     <div className="p-6 md:p-12 bg-gray-200 min-h-screen">
-      <h1 className="text-3xl font-bold mb-8 text-center text-gray-800">
+      <h1 className="text-4xl font-extrabold mb-8 text-center text-gray-800">
         All Events
       </h1>
       {error && (
         <p className="text-red-600 font-semibold text-center mb-6">{error}</p>
       )}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {Array.isArray(events) && events.length > 0 ? (
           events.map((event) => <EventCard key={event._id} event={event} />)
         ) : (

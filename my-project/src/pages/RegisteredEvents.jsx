@@ -9,9 +9,9 @@ const RegisteredEvents = () => {
   useEffect(() => {
     const fetchRegisteredEvents = async () => {
       const token = localStorage.getItem("token");
-      console.log("registered events token", token);
       if (!token) {
-        throw new Error("No token found");
+        setError("No token found");
+        return;
       }
 
       try {
@@ -24,13 +24,11 @@ const RegisteredEvents = () => {
             },
           }
         );
-        console.log(response);
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
 
         const data = await response.json();
-        console.log("Fetched events:", data);
         setRegisteredEvents(data);
       } catch (err) {
         setError("Error fetching registered events");
@@ -41,18 +39,22 @@ const RegisteredEvents = () => {
   }, []);
 
   return (
-    <div className="p-6 max-w-screen-xl mx-auto">
-      <h1 className="text-3xl font-extrabold text-gray-800 mb-6">
+    <div className="p-6 max-w-screen-xl mx-auto min-h-screen">
+      <h1 className="text-4xl font-extrabold text-gray-800 mb-8 text-center">
         Registered Events
       </h1>
-      {error && <p className="text-red-600 font-semibold">{error}</p>}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {error && (
+        <p className="text-red-600 font-semibold text-center mb-6">{error}</p>
+      )}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {registeredEvents.length > 0 ? (
           registeredEvents.map((event) => (
             <EventCard key={event._id} event={event} />
           ))
         ) : (
-          <p>No registered events found.</p>
+          <p className="text-gray-600 text-center col-span-3">
+            No registered events found.
+          </p>
         )}
       </div>
     </div>

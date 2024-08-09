@@ -45,7 +45,7 @@ const CreateEvent = () => {
   return (
     <div className="flex flex-col md:flex-row items-start md:items-center p-6 max-w-6xl mx-auto mt-6 mb-6 bg-gray-100 border border-gray-300 rounded-lg">
       <div className="flex-1 p-6">
-        <h1 className="text-3xl font-bold text-indigo-700 mb-6">
+        <h1 className="text-4xl font-extrabold text-indigo-700 mb-6">
           Create New Event
         </h1>
         <form onSubmit={handleSubmit} className="space-y-5">

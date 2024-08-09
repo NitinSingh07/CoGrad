@@ -138,7 +138,7 @@ const getRegisteredEvents = async (req, res) => {
       return res.status(401).json({ error: "User not authenticated" });
     }
 
-    const events = await Event.find({ attendees: req.user.id })
+    const events = await Event.find({ attendees: req.user._id })
       .populate("organizer", "username")
       .exec();
 
