@@ -5,6 +5,7 @@ import Home from "./pages/Home.jsx";
 import { Toaster } from "react-hot-toast";
 import EventDetail from "./components/EventDetails.jsx";
 import RegisteredEvents from "./pages/RegisteredEvents.jsx";
+import CreateEvent from "./pages/CreateEvent.jsx";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route exact path="/home" element={<Home />} />
         <Route path="/events/:id" element={<EventDetail />} />
         <Route path="/registered-events" element={<RegisteredEvents />} />
+        <Route path="/create-event" element={<CreateEvent />} />
       </Routes>
       <Toaster />
     </>
