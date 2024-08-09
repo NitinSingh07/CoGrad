@@ -14,35 +14,18 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      if (!emailUsername || !password) {
-        toast.error("Please fill in all fields");
-        return;
-      }
-
-      let response;
-      if (emailUsername.includes("@")) {
-        response = await fetch("http://localhost:8000/api/auth/signIn", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            credentials: "include",
-            getSetCookie: "true",
-          },
-          secure: false,
-          cors: true,
-          body: JSON.stringify({ email: emailUsername, password }),
-        });
-      } else {
-        response = await fetch("http://localhost:8000/api/auth/signIn", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ userName: emailUsername, password }),
-        });
-      }
+      const response = await fetch("http://localhost:8000/api/auth/signIn", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include", // This ensures cookies are sent and received
+        body: JSON.stringify({ email: emailUsername, password }),
+      });
 
       const data = await response.json();
+      console.log(data);
+      localStorage.setItem("token", data.token);
       if (response.ok) {
         toast.success("User logged in successfully");
         // console.log(data.data.user);
