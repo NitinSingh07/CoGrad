@@ -1,6 +1,5 @@
 // src/pages/Home.jsx
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import EventCard from "../components/EventCard";
 
 const Home = () => {
@@ -10,14 +9,19 @@ const Home = () => {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const res = await axios.get("http://localhost:8000/api/getAll");
-        if (Array.isArray(res.data)) {
-          setEvents(res.data);
+        const response = await fetch("http://localhost:8000/api/getAll");
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const data = await response.json();
+        if (Array.isArray(data)) {
+          setEvents(data);
         } else {
           setError("Unexpected data format");
         }
       } catch (err) {
         setError("Error fetching events");
+        console.error("Error fetching events:", err);
       }
     };
 
