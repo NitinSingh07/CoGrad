@@ -41,7 +41,7 @@ const signIn = async (req, res, next) => {
     console.log("Token:", token);
 
     const options = {
-      httpOnly: true,
+      httpOnly: false,
       secure: true, // Adjust based on environment
       sameSite: "lax",
       path: "/", // Adjust as needed, can also be 'strict' or 'none'
