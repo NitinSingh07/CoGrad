@@ -16,7 +16,7 @@ const RegisteredEvents = () => {
 
       try {
         const response = await fetch(
-          "http://localhost:8000/api/registered-events",
+          "/api/registered-events",
           {
             method: "GET",
             headers: {

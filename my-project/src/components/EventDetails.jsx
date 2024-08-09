@@ -19,7 +19,7 @@ const EventDetail = () => {
     const fetchEvent = async () => {
       try {
         const response = await fetch(
-          `http://localhost:8000/api/getevent/${id}`
+          `/api/getevent/${id}`
         );
         if (!response.ok) {
           throw new Error("Network response was not ok");
@@ -45,7 +45,7 @@ const EventDetail = () => {
 
     try {
       const response = await fetch(
-        `http://localhost:8000/api/event/register/${id}`,
+        `/api/event/register/${id}`,
         {
           method: "POST",
           headers: {
