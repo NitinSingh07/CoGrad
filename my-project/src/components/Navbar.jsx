@@ -4,7 +4,7 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 const Navbar = () => {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const [isNavbarOpen, setNavbarOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // State to track login status
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
   const dropdownRef = useRef(null);
 
@@ -31,7 +31,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-gradient-to-r w-full from-green-500 via-yellow-600 to-green-300 border-b border-gray-200 dark:border-gray-700 relative">
+    <nav className="bg-gradient-to-r w-full from-green-400  to-blue-500 border-b border-gray-200 dark:border-gray-700 relative">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <a href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
           {/* <img
@@ -40,7 +40,7 @@ const Navbar = () => {
             alt="Logo"
           /> */}
           <span className="self-center text-2xl font-semibold text-white dark:text-white">
-            <img src="/image001.png" alt="" className="w-32 h-10" />
+            <img src="/image001.png" alt="" className="w-32 h-12" />
           </span>
         </a>
         <div className="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse relative">
@@ -77,28 +77,13 @@ const Navbar = () => {
                   <ul className="py-2" aria-labelledby="user-menu-button">
                     <li>
                       <NavLink
-                        to="/dashboard"
+                        to="/user-profile"
                         className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                       >
-                        Dashboard
+                        User Profile
                       </NavLink>
                     </li>
-                    <li>
-                      <a
-                        href="#"
-                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                      >
-                        Settings
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                      >
-                        Earnings
-                      </a>
-                    </li>
+
                     <li>
                       <a
                         href="#"
@@ -175,18 +160,7 @@ const Navbar = () => {
                 Home
               </NavLink>
             </li>
-            <li>
-              <NavLink
-                to="/create-event"
-                className={({ isActive }) =>
-                  `block py-2 px-3 rounded ${
-                    isActive ? "text-black" : "text-gray-900"
-                  } hover:bg-gray-100 md:hover:bg-transparent md:hover:text-yellow-400 md:p-0 dark:text-white md:dark:hover:text-yellow-500 dark:hover:bg-yellow-400 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`
-                }
-              >
-                Create an Event
-              </NavLink>
-            </li>
+
             <li>
               <NavLink
                 to="/getAll"
@@ -199,18 +173,7 @@ const Navbar = () => {
                 All Events
               </NavLink>
             </li>
-            <li>
-              <NavLink
-                to="/registered-events"
-                className={({ isActive }) =>
-                  `block py-2 px-3 rounded ${
-                    isActive ? "text-black" : "text-gray-900"
-                  } hover:bg-gray-100 md:hover:bg-transparent md:hover:text-yellow-400 md:p-0 dark:text-white md:dark:hover:text-yellow-500 dark:hover:bg-yellow-400 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`
-                }
-              >
-                Registered Events
-              </NavLink>
-            </li>
+
             <li>
               <NavLink
                 to="/create-event"
@@ -221,6 +184,18 @@ const Navbar = () => {
                 }
               >
                 Create an Event
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/registered-events"
+                className={({ isActive }) =>
+                  `block py-2 px-3 rounded ${
+                    isActive ? "text-black" : "text-gray-900"
+                  } hover:bg-gray-100 md:hover:bg-transparent md:hover:text-yellow-400 md:p-0 dark:text-white md:dark:hover:text-yellow-500 dark:hover:bg-yellow-400 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`
+                }
+              >
+                Registered Events
               </NavLink>
             </li>
           </ul>

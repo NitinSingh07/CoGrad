@@ -1,8 +1,10 @@
 import jwt from "jsonwebtoken";
 
 const auth = (req, res, next) => {
-  const token = req?.cookies?.access_token||req.header("Authorization")?.replace("Bearer ","");
-  console.log("Token:", token);
+  const token =
+    req?.cookies?.access_token ||
+    req.header("Authorization")?.replace("Bearer ", "");
+  // console.log("Token:", token);
 
   if (!token) {
     return res.status(401).json({ error: "Not authorized" });
@@ -15,7 +17,7 @@ const auth = (req, res, next) => {
     }
 
     req.user = user;
-    console.log("User:", user);
+    // console.log("User:", user);
 
     next();
   });
