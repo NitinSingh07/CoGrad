@@ -28,8 +28,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(
   cors({
-    origin: "https://event-management-two-iota.vercel.app",
-    credentials: true,
+    origin: true, // Allows all origins
+  credentials: true, // Allows credentials
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], 
   })
 );
 
